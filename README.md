@@ -3,6 +3,8 @@ Split Vietnamese syllable into onset and rime
 
 Spliting library (written in Python): [vietnamese_syllable_regex](vietnamese_syllable_regex.py), ([test](test.py))
 
+Documentation [here](documentation.md).
+
 ---
 
 Các kí tự nguyên âm có dấu:
