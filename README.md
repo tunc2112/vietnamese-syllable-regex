@@ -1,6 +1,10 @@
 # vietnamese-syllable-regex
 Split Vietnamese syllable into onset and rime
 
+Spliting library (written in Python): [vietnamese_syllable_regex](vietnamese_syllable_regex.py), ([test](test.py))
+
+---
+
 Các kí tự nguyên âm có dấu:
 ```python
 aàáảãạ
