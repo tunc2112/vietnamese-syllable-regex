@@ -53,8 +53,30 @@ def get_rime(s):  # kiểm tra vần hợp lệ
 				return remove_tone(s)
 
 
-def split_vietnamese_syllable(s, keeping_tone=True):
-	onset, right_side = None, None
+def get_tone(s):
+	if re.match(r".?[àằầèềìòồờùừỳ].*", s):
+		return "acute"  # huyền
+
+	if re.match(r".?[áắấéếíóốớúứý].*", s):
+		return "grave"  # sắc
+
+	if re.match(r".?[ảẳẩẻểỉỏổởủửỷ].*", s):
+		return "hook"  # hỏi
+
+	if re.match(r".?[ãẵẫẽễĩõỗỡũữỹ].*", s):
+		return "tilde"  # ngã
+
+	if re.match(r".?[ạặậẹệịọộợụựỵ].*", s):
+		return "dot"  # nặng
+
+	if re.match(r".?[aăâeêioôơuưy].*", s):
+		return "blank"  # ngang
+
+	return None
+
+
+def split_vietnamese_syllable(s):
+	onset, right_side, tone = None, None, None
 
 	if re.match(r"^[aàáảãạăằắẳẵặâầấẩẫậeèéẻẽẹêềếểễệiìíỉĩịoòóỏõọôồốổỗộơờớởỡợuùúủũụưừứửữựyỳýỷỹỵ]", s):  # no leading onset
 		onset = ""
@@ -106,5 +128,7 @@ def split_vietnamese_syllable(s, keeping_tone=True):
 
 	if onset is not None and right_side is not None:
 		rime = get_rime(right_side)
+		tone = get_tone(right_side)
+
 		if rime:
-			return (onset, right_side if keeping_tone else rime)
+			return (onset, rime, tone)
